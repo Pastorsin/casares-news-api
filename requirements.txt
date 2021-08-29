@@ -1,0 +1,17 @@
+-e git+https://github.com/rob-metalinkage/django-rdf-io.git#egg=rdf_io
+apscheduler==3.7.0
+beautifulsoup4==4.9.3
+django-cors-headers==3.8.0
+django-environ==0.4.5
+django-heroku==0.3.1
+django-push-notifications==2.0.0
+django==3.2.6
+djangorestframework==3.12.4
+gunicorn==20.1.0
+psycopg2==2.9.1
+py-vapid==1.8.2
+python-dateutil==2.8.2
+python-telegram-bot==13.7
+pywebpush==1.14.0
+rdflib==6.0.0
+requests==2.26.0

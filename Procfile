@@ -1,0 +1,1 @@
+web: gunicorn casares-news.wsgi --log-file -

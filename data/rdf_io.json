@@ -1,0 +1,157 @@
+[
+    {
+        "model": "rdf_io.namespace",
+        "pk": 1,
+        "fields": {
+            "uri": "https://schema.org/",
+            "prefix": "schema",
+            "notes": ""
+        }
+    },
+    {
+        "model": "rdf_io.namespace",
+        "pk": 2,
+        "fields": {
+            "uri": "http://casares-news.herokuapp.com/",
+            "prefix": "cnews",
+            "notes": ""
+        }
+    },
+    {
+        "model": "rdf_io.objecttype",
+        "pk": 1,
+        "fields": {
+            "uri": "https://schema.org/NewsMediaOrganization",
+            "label": "NewsMediaOrganization"
+        }
+    },
+    {
+        "model": "rdf_io.objecttype",
+        "pk": 2,
+        "fields": {
+            "uri": "https://schema.org/NewsArticle",
+            "label": "NewsArticle"
+        }
+    },
+    {
+        "model": "rdf_io.objectmapping",
+        "pk": 1,
+        "fields": {
+            "content_type": 25,
+            "name": "newspapers",
+            "auto_push": true,
+            "id_attr": "encoded_name",
+            "target_uri_expr": "\"cnews:newspapers\"",
+            "filter": null,
+            "obj_type": [
+                1
+            ]
+        }
+    },
+    {
+        "model": "rdf_io.objectmapping",
+        "pk": 2,
+        "fields": {
+            "content_type": 26,
+            "name": "articles",
+            "auto_push": false,
+            "id_attr": "id",
+            "target_uri_expr": "\"cnews:articles\"",
+            "filter": null,
+            "obj_type": [
+                2
+            ]
+        }
+    },
+    {
+        "model": "rdf_io.attributemapping",
+        "pk": 1,
+        "fields": {
+            "scope": 1,
+            "attr": "name",
+            "predicate": "schema:name",
+            "is_resource": false
+        }
+    },
+    {
+        "model": "rdf_io.attributemapping",
+        "pk": 2,
+        "fields": {
+            "scope": 1,
+            "attr": "url",
+            "predicate": "schema:url",
+            "is_resource": false
+        }
+    },
+    {
+        "model": "rdf_io.attributemapping",
+        "pk": 3,
+        "fields": {
+            "scope": 2,
+            "attr": "title",
+            "predicate": "schema:headline",
+            "is_resource": false
+        }
+    },
+    {
+        "model": "rdf_io.attributemapping",
+        "pk": 4,
+        "fields": {
+            "scope": 2,
+            "attr": "url",
+            "predicate": "schema:url",
+            "is_resource": false
+        }
+    },
+    {
+        "model": "rdf_io.attributemapping",
+        "pk": 5,
+        "fields": {
+            "scope": 2,
+            "attr": "photo",
+            "predicate": "schema:thumbnailUrl",
+            "is_resource": false
+        }
+    },
+    {
+        "model": "rdf_io.attributemapping",
+        "pk": 6,
+        "fields": {
+            "scope": 2,
+            "attr": "description",
+            "predicate": "schema:text",
+            "is_resource": false
+        }
+    },
+    {
+        "model": "rdf_io.attributemapping",
+        "pk": 7,
+        "fields": {
+            "scope": 2,
+            "attr": "formated_date",
+            "predicate": "schema:datePublished",
+            "is_resource": false
+        }
+    },
+    {
+        "model": "rdf_io.embeddedmapping",
+        "pk": 1,
+        "fields": {
+            "scope": 2,
+            "attr": "source",
+            "predicate": "schema:creator",
+            "struct": "<cnews:newspapers/{encoded_name}>",
+            "use_blank": true
+        }
+    },
+    {
+        "model": "rdf_io.chainedmapping",
+        "pk": 1,
+        "fields": {
+            "scope": 2,
+            "attr": "source",
+            "predicate": "schema:creator",
+            "chainedMapping": 1
+        }
+    }
+]

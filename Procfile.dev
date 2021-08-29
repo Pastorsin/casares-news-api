@@ -1,0 +1,3 @@
+web: gunicorn casares-news.wsgi
+scheduler: python manage.py runscheduler
+scrap: python manage.py runscrap
