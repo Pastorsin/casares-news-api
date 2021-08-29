@@ -171,7 +171,7 @@ STATIC_URL = "/static/"
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://pastorsin.github.io/",
+    "https://pastorsin.github.io",
 ]
 
 # Heroku settings
