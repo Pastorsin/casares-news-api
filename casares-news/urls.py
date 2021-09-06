@@ -12,7 +12,7 @@ if settings.ONLY_DJANGO_APPS:
     OWN_URLS = []
 else:
     OWN_URLS = [
-        path("articles/", include("news.urls")),
+        path("", include("news.urls")),
         path("notification/", include("notification.urls")),
     ]
 

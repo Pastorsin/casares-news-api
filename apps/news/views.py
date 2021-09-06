@@ -1,6 +1,8 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.views import View
+from rdf_io.views import to_rdfbyid
 
-from news.models import Article
+from news.models import Article, Newspaper
 from news.parsers import ParseException, parse_args
 from news.renderers import error_response, rdf_response
 from news.serializers import serialize_to_rdf
@@ -24,3 +26,18 @@ class ArticleView(View):
                 mime_format=request.content_type,
                 mime_default=self.DEFAULT_MIME_FORMAT,
             )
+
+class ArticleDetailView(View):
+    def get(self, request, id):
+        return to_rdfbyid(request, "article", id)
+
+class NewspaperDetailView(View):
+    def get(self, request, name):
+        try:
+            uncoded_name = name.replace("_", " ")
+            newspaper = Newspaper.objects.get(name__iexact=uncoded_name)
+            newspaper_id = newspaper.id
+        except ObjectDoesNotExist:
+            newspaper_id = -1
+
+        return to_rdfbyid(request, "newspaper", newspaper_id)
