@@ -27,17 +27,23 @@ class ArticleView(View):
                 mime_default=self.DEFAULT_MIME_FORMAT,
             )
 
+
 class ArticleDetailView(View):
     def get(self, request, id):
         return to_rdfbyid(request, "article", id)
 
+
 class NewspaperDetailView(View):
     def get(self, request, name):
-        try:
-            uncoded_name = name.replace("_", " ")
-            newspaper = Newspaper.objects.get(name__iexact=uncoded_name)
-            newspaper_id = newspaper.id
-        except ObjectDoesNotExist:
-            newspaper_id = -1
-
+        newspaper_id = self._get_id(name)
         return to_rdfbyid(request, "newspaper", newspaper_id)
+
+    def _get_id(self, encoded_name):
+        NOT_FOUND = -1
+
+        try:
+            uncoded_name = encoded_name.replace("_", " ")
+            newspaper = Newspaper.objects.get(name__iexact=uncoded_name)
+            return newspaper.id
+        except ObjectDoesNotExist:
+            return NOT_FOUND
